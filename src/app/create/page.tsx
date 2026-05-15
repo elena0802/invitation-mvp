@@ -1,3 +1,4 @@
+import { InvitationForm } from "@/components/InvitationForm";
 import Link from "next/link";
 
 export default function CreateInvitationPage() {
@@ -8,11 +9,12 @@ export default function CreateInvitationPage() {
           홈으로
         </Link>
         <h1 className="mt-8 text-3xl font-semibold tracking-normal">
-          초대장 생성 페이지
+          초대장 만들기
         </h1>
         <p className="mt-4 leading-7 text-[#6d6258]">
-          다음 단계에서 입력 폼과 Supabase 저장 기능을 추가합니다.
+          필요한 정보를 입력한 뒤 저장하면 공개 초대장 URL로 이동합니다.
         </p>
+        <InvitationForm />
       </section>
     </main>
   );
