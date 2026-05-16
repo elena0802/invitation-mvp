@@ -1,3 +1,4 @@
+import { CopyLinkButton } from "@/components/CopyLinkButton";
 import type { InvitationRecord } from "@/types/invitation";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -89,6 +90,8 @@ function WeddingInvitationView({ invitation }: InvitationViewProps) {
           함께해 주시는 따뜻한 마음을 오래 간직하겠습니다.
         </p>
       </InvitationSection>
+
+      <CopyLinkButton />
     </article>
   );
 }
@@ -138,6 +141,8 @@ function ThankYouInvitationView({ invitation }: InvitationViewProps) {
           {invitation.bride_name}
         </p>
       </section>
+
+      <CopyLinkButton />
     </article>
   );
 }
