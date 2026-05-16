@@ -63,6 +63,7 @@ export async function createInvitation(input: CreateInvitationInput) {
         wedding_date: input.wedding_date,
         venue: input.venue,
         message: input.message,
+        image_url: input.image_url ?? null,
       })
       .select()
       .single<InvitationRecord>();

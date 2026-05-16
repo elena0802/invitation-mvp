@@ -3,15 +3,6 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-type InvitationFormData = {
-  title: string;
-  groom_name: string;
-  bride_name: string;
-  wedding_date: string;
-  venue: string;
-  message: string;
-};
-
 export function InvitationForm() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,22 +14,11 @@ export function InvitationForm() {
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
-    const payload: InvitationFormData = {
-      title: String(formData.get("title") ?? ""),
-      groom_name: String(formData.get("groom_name") ?? ""),
-      bride_name: String(formData.get("bride_name") ?? ""),
-      wedding_date: String(formData.get("wedding_date") ?? ""),
-      venue: String(formData.get("venue") ?? ""),
-      message: String(formData.get("message") ?? ""),
-    };
 
     try {
       const response = await fetch("/api/invitations", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+        body: formData,
       });
 
       const result = (await response.json()) as {
@@ -133,6 +113,22 @@ export function InvitationForm() {
           placeholder="서울 웨딩홀 3층 그랜드볼룸"
           className="mt-2 min-h-12 w-full rounded-md border border-[#d8cfc5] px-4 text-base outline-none transition focus:border-[#8a6f55] focus:ring-2 focus:ring-[#eaded1]"
         />
+      </div>
+
+      <div>
+        <label htmlFor="image" className="block text-sm font-semibold">
+          메인 이미지
+        </label>
+        <input
+          id="image"
+          name="image"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          className="mt-2 block w-full rounded-md border border-[#d8cfc5] px-4 py-3 text-sm text-[#6d6258] file:mr-4 file:rounded-md file:border-0 file:bg-[#2f2a25] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
+        />
+        <p className="mt-2 text-sm leading-6 text-[#8a7c70]">
+          JPG, PNG, WebP 형식의 5MB 이하 이미지를 업로드할 수 있습니다.
+        </p>
       </div>
 
       <div>
