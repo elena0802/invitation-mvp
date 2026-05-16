@@ -99,7 +99,7 @@ function WeddingInvitationView({ invitation }: InvitationViewProps) {
 function ThankYouInvitationView({ invitation }: InvitationViewProps) {
   return (
     <article className="mx-auto min-h-screen w-full max-w-[430px] bg-[#fffaf6] px-6 py-8 text-center text-[#3c3028] sm:my-8 sm:min-h-0 sm:px-8 sm:py-10">
-      <header className="pb-10">
+      <header className="pb-8">
         <p className="text-sm font-medium text-[#b18466]">Thank You</p>
         <h1 className="mt-4 text-3xl font-light tracking-normal text-[#332821]">
           감사의 마음을 전합니다
@@ -107,7 +107,7 @@ function ThankYouInvitationView({ invitation }: InvitationViewProps) {
         <div className="mx-auto mt-7 h-px w-12 bg-[#dcc5ad]" />
       </header>
 
-      <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-md bg-[#f3e8da]">
+      <div className="relative mx-auto aspect-[6/7] w-full overflow-hidden rounded-md bg-[#f3e8da]">
         {invitation.image_url ? (
           <Image
             src={invitation.image_url}
@@ -127,13 +127,13 @@ function ThankYouInvitationView({ invitation }: InvitationViewProps) {
         )}
       </div>
 
-      <section className="px-1 py-12">
-        <p className="whitespace-pre-line text-base leading-9 text-[#5f5147]">
+      <section className="px-1 py-10">
+        <p className="whitespace-pre-line text-base leading-8 text-[#5f5147]">
           {invitation.message}
         </p>
       </section>
 
-      <section className="border-t border-[#eadfce] px-1 py-10">
+      <section className="border-t border-[#eadfce] px-1 py-7">
         <p className="text-xs font-medium text-[#a17f63]">신랑 · 신부</p>
         <p className="mt-5 text-2xl font-semibold tracking-normal text-[#332821]">
           {invitation.groom_name}
