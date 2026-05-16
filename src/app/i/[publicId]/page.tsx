@@ -39,7 +39,7 @@ export default async function PublicInvitationPage({
   }
 
   return (
-    <main className="min-h-screen bg-[#f7efe6] text-[#3f342c]">
+    <main className="min-h-screen min-h-dvh bg-[#f7efe6] text-[#3f342c]">
       <InvitationView invitation={invitation} />
     </main>
   );
