@@ -1,6 +1,9 @@
+export type InvitationCardType = "invitation" | "thank_you";
+
 export type InvitationRecord = {
   id: string;
   public_id: string;
+  card_type: InvitationCardType;
   title: string;
   groom_name: string;
   bride_name: string;
@@ -13,6 +16,7 @@ export type InvitationRecord = {
 };
 
 export type CreateInvitationInput = {
+  card_type: InvitationCardType;
   title: string;
   groom_name: string;
   bride_name: string;

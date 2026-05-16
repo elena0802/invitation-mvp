@@ -25,6 +25,7 @@ async function parseInvitationRequest(request: Request) {
 
   const formData = await request.formData();
   const input = normalizeCreateInvitationInput({
+    card_type: formData.get("card_type"),
     title: formData.get("title"),
     groom_name: formData.get("groom_name"),
     bride_name: formData.get("bride_name"),

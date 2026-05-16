@@ -44,6 +44,31 @@ export function InvitationForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+      <fieldset>
+        <legend className="block text-sm font-semibold">종류 선택</legend>
+        <div className="mt-2 grid grid-cols-2 gap-3">
+          <label className="flex min-h-12 items-center justify-center rounded-md border border-[#d8cfc5] px-4 text-sm font-semibold text-[#2f2a25] has-checked:border-[#2f2a25] has-checked:bg-[#2f2a25] has-checked:text-white">
+            <input
+              type="radio"
+              name="card_type"
+              value="invitation"
+              defaultChecked
+              className="sr-only"
+            />
+            초대장
+          </label>
+          <label className="flex min-h-12 items-center justify-center rounded-md border border-[#d8cfc5] px-4 text-sm font-semibold text-[#2f2a25] has-checked:border-[#2f2a25] has-checked:bg-[#2f2a25] has-checked:text-white">
+            <input
+              type="radio"
+              name="card_type"
+              value="thank_you"
+              className="sr-only"
+            />
+            감사장
+          </label>
+        </div>
+      </fieldset>
+
       <div>
         <label htmlFor="title" className="block text-sm font-semibold">
           초대장 제목

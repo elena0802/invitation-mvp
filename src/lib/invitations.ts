@@ -1,6 +1,10 @@
 import { createPublicId } from "@/lib/publicId";
 import { createSupabaseServerClient } from "@/lib/supabase";
-import type { CreateInvitationInput, InvitationRecord } from "@/types/invitation";
+import type {
+  CreateInvitationInput,
+  InvitationCardType,
+  InvitationRecord,
+} from "@/types/invitation";
 
 const REQUIRED_FIELDS: Array<keyof CreateInvitationInput> = [
   "title",
@@ -10,6 +14,12 @@ const REQUIRED_FIELDS: Array<keyof CreateInvitationInput> = [
   "venue",
   "message",
 ];
+
+const CARD_TYPES: InvitationCardType[] = ["invitation", "thank_you"];
+
+function isInvitationCardType(value: unknown): value is InvitationCardType {
+  return typeof value === "string" && CARD_TYPES.includes(value as InvitationCardType);
+}
 
 export class InvitationValidationError extends Error {
   constructor(message: string) {
@@ -26,6 +36,9 @@ export function normalizeCreateInvitationInput(
   }
 
   const source = payload as Partial<Record<keyof CreateInvitationInput, unknown>>;
+  const cardType = isInvitationCardType(source.card_type)
+    ? source.card_type
+    : "invitation";
 
   const input = REQUIRED_FIELDS.reduce((result, field) => {
     const value = source[field];
@@ -38,7 +51,7 @@ export function normalizeCreateInvitationInput(
       ...result,
       [field]: value.trim(),
     };
-  }, {} as CreateInvitationInput);
+  }, { card_type: cardType } as CreateInvitationInput);
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(input.wedding_date)) {
     throw new InvitationValidationError("예식일 형식이 올바르지 않습니다.");
@@ -57,6 +70,7 @@ export async function createInvitation(input: CreateInvitationInput) {
       .from("invitations")
       .insert({
         public_id: publicId,
+        card_type: input.card_type,
         title: input.title,
         groom_name: input.groom_name,
         bride_name: input.bride_name,
