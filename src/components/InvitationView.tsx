@@ -1,4 +1,5 @@
 import { CopyLinkButton } from "@/components/CopyLinkButton";
+import { KakaoShareButton } from "@/components/KakaoShareButton";
 import type { InvitationRecord } from "@/types/invitation";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -142,7 +143,13 @@ function ThankYouInvitationView({ invitation }: InvitationViewProps) {
         </p>
       </section>
 
-      <CopyLinkButton />
+      <CopyLinkButton>
+        <KakaoShareButton
+          cardType={invitation.card_type}
+          publicId={invitation.public_id}
+          imageUrl={invitation.image_url}
+        />
+      </CopyLinkButton>
     </article>
   );
 }

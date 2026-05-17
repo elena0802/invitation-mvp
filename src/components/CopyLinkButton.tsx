@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
 
-export function CopyLinkButton() {
+type CopyLinkButtonProps = {
+  children?: ReactNode;
+};
+
+export function CopyLinkButton({ children }: CopyLinkButtonProps) {
   const [message, setMessage] = useState("");
 
   async function handleCopy() {
@@ -21,6 +26,7 @@ export function CopyLinkButton() {
 
   return (
     <div className="border-t border-[#eadfce] px-1 pt-8">
+      {children ? <div className="mb-3">{children}</div> : null}
       <button
         type="button"
         onClick={handleCopy}
