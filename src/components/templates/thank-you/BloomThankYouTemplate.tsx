@@ -62,6 +62,10 @@ export function BloomThankYouTemplate({
           imageUrl={invitation.image_url}
         />
       </CopyLinkButton>
+
+      <footer className="mt-16 pb-[calc(env(safe-area-inset-bottom)+1rem)] text-center text-[10px] leading-5 text-[#b8aa9b]">
+        © 2026 FlowlyBloom. All rights reserved.
+      </footer>
     </article>
   );
 }
